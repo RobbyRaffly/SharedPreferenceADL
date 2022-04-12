@@ -27,7 +27,22 @@ class Settings : AppCompatActivity() {
         seekBar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 count.setText("${p1.toString()}")
+                seekBar1.setProgress(p1)
+                sliderValue=p1
 
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?){
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
+
+        seekBar1.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                count.setText("${p1.toString()}")
+                seekBar.setProgress(p1)
                 sliderValue=p1
 
             }
@@ -122,7 +137,7 @@ class Settings : AppCompatActivity() {
         groupCombo = sharedPreference.getInt("combo",0)
         switchComp = sharedPreference.getBoolean("switch",false)
         editTxtket.setText(sharedPreference.getString("text",""))
-
+        seekBar1.setProgress(sliderValue)
         seekBar.setProgress(sliderValue)
         radioGroup.check(groupCombo)
         switchOn.setChecked(switchComp)
